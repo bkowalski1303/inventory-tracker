@@ -1,0 +1,12 @@
+@app.route("/delete_item/<item_name>", methods=["GET"])
+def delete_item(item_name):
+    inventory = load_inventory("inventory.json")
+
+    if item_name not in inventory:
+        return "Item not found!", 404
+
+    # Delete & save
+    del inventory[item_name]
+    save_inventory(inventory, "inventory.json")
+    
+    return redirect(url_for("index"))

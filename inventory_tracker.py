@@ -129,3 +129,16 @@ def add_stock(inventory):
     inventory[item].stock += int(input("How many " + item + "'s would you like to add? "))
     
     save_inventory(inventory, "inventory.json")
+
+
+def delete_item(inventory):
+    flag = False
+    while flag == False:
+        item = input("Which Item would you like to delete from inventory? ")
+        if item in inventory:
+            flag = True
+        else:
+            print("Please try again")
+    del inventory[item]
+
+    save_inventory(inventory,"inventory.json")
