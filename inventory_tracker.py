@@ -114,3 +114,18 @@ def generate_restock_report(inventory):
         gap = -neg_gap  # convert back to positive
         print(f"{rank}. {name} (stock: {item.stock} / threshold: {item.restock_threshold}) → NEED {gap} more")
         rank += 1
+
+
+def add_stock(inventory):
+    
+    flag = False
+    while flag == False:
+        item = input("Which item would you like to add? ")
+        if item in inventory:
+            flag = True
+        else:
+            print("Please try again")
+            
+    inventory[item].stock += int(input("How many " + item + "'s would you like to add? "))
+    
+    save_inventory(inventory, "inventory.json")
