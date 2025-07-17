@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Restock Report</h2>
+{% if restock_list %}
+<table border="1" cellpadding="5">
+    <tr>
+        <th>Item</th>
+        <th>Stock</th>
+        <th>Threshold</th>
+        <th>Need More</th>
+    </tr>
+    {% for gap, name, item in restock_list %}
+    <tr>
+        <td>{{ name }}</td>
+        <td>{{ item.stock }}</td>
+        <td>{{ item.restock_threshold }}</td>
+        <td>{{ gap }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>✅ All items are sufficiently stocked!</p>
+{% endif %}
+{% endblock %}
